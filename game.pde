@@ -4,7 +4,6 @@ void game() {
 
   if (ballx<8/2||ballx>width-8/2) {
     vx=vx*-1;
-    
   }
   circle(x, y, d);
   circle(ballx, bally, balld);
@@ -32,6 +31,22 @@ void game() {
   }
   if (x<50) {
     x=50;
+  }
+
+  circle(bx[0], by[0], brickd);
+  circle(bx[1], by[1], brickd);
+  circle(bx[2], by[2], brickd);
+
+  int i=0;
+  while (i<n) {
+    circle(bx[1], by[i], brickd);
+    i=i+1;
+  }
+  
+  dist = dist(bx[1], by[1], ballx, bally);
+  if (dist<R+brickd) {
+    vx=(ballx-bx[1])/10;
+    vy=(bally-by[1])/10;
   }
 }
 void gameClicks() {

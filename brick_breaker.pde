@@ -1,5 +1,6 @@
 int i=0;
 int mode;
+int n;
 final int INTRO=0;
 final int GAME=1;
 final int PAUSE=2;
@@ -13,6 +14,10 @@ float S2, dist;
 boolean akey, dkey, upkey, downkey;
 float r, R;
 int score, timer;
+
+int[] bx; 
+int[] by; 
+int brickd;
 
 void setup() {
   size(800, 1000);
@@ -30,9 +35,27 @@ void setup() {
   d=100;
   r=d/2;
   R=balld/2;
-  
+
   timer=100;
   akey=dkey=upkey=downkey=false;
+
+  brickd=50;
+  n=4;
+  bx=new int[n];
+  by=new int[n];
+
+  bx[0]=100;
+  by[0]=100;
+
+  bx[1]=400;
+  by[1]=100;
+
+  bx[2]=700;
+  by[2]=100;
+
+  bx[3]=100;
+  by[3]=200;
+
 }
 void draw() {
   if (mode==INTRO) {
