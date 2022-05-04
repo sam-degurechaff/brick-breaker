@@ -14,6 +14,7 @@ float S2, dist;
 boolean akey, dkey, upkey, downkey;
 float r, R;
 int score, timer;
+int tempx, tempy;
 
 int[] bx; 
 int[] by; 
@@ -40,22 +41,17 @@ void setup() {
   akey=dkey=upkey=downkey=false;
 
   brickd=50;
-  n=4;
+  n=40;
   bx=new int[n];
   by=new int[n];
-
-  bx[0]=100;
-  by[0]=100;
-
-  bx[1]=400;
-  by[1]=100;
-
-  bx[2]=700;
-  by[2]=100;
-
-  bx[3]=100;
-  by[3]=200;
-
+  tempx=10;
+  tempy=10;
+  int i=0;
+  while (i<n) {
+    bx[i]=tempx;
+    by[i]=tempy;
+    i=i+1;
+  }
 }
 void draw() {
   if (mode==INTRO) {

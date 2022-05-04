@@ -39,14 +39,12 @@ void game() {
 
   int i=0;
   while (i<n) {
-    circle(bx[1], by[i], brickd);
+    circle(bx[i], by[i], brickd);
+    if (dist(ballx,bally,bx[i],by[i])<balld/2+brickd/2) {
+      vx=(ballx-bx[i])/10;
+      vy=(bally-by[i])/10;
+    }
     i=i+1;
-  }
-  
-  dist = dist(bx[1], by[1], ballx, bally);
-  if (dist<R+brickd) {
-    vx=(ballx-bx[1])/10;
-    vy=(bally-by[1])/10;
   }
 }
 void gameClicks() {
