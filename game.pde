@@ -1,7 +1,9 @@
 void game() {
   text(timer, 3*width/4, 550); 
   timer=timer-1;
+  circle(100, 100, 50);
 
+  println(ballx, bally);
   if (ballx<8/2||ballx>width-8/2) {
     vx=vx*-1;
   }
@@ -22,7 +24,7 @@ void game() {
     bally=bally+vy;
   }
 
-  if (bally<100/2||bally>height-100/2) {
+  if (bally<8/2||bally>height-8/2) {
     vy=vy*-1;
   }
 
@@ -39,13 +41,32 @@ void game() {
 
   int i=0;
   while (i<n) {
-    circle(bx[i], by[i], brickd);
-    if (dist(ballx,bally,bx[i],by[i])<balld/2+brickd/2) {
-      vx=(ballx-bx[i])/10;
-      vy=(bally-by[i])/10;
-    }
-    i=i+1;
+    if (alive[i]==true)
+
+      manageBrick( i );
+    i++;
   }
 }
-void gameClicks() {
+
+void gameClicks() {  
+  if (bally>1000) {
+    //playSound();
+  } else if (dist(mouseX, mouseY, 100, 100)<50) {
+    mode=PAUSE;
+  } else {
+    lives=lives-1;
+    // bump.rewind();
+    // bump.play();
+    if (lives==0) {
+      mode=GAMEOVER;
+    }
+  }
+}
+void manageBrick(int i ) {
+  circle(bx[i], by[i], brickd);
+  if (dist(ballx, bally, bx[i], by[i])<balld/2+brickd/2) {
+    vx=(ballx-bx[i])/10;
+    vy=(bally-by[i])/10;
+    alive[i]=false;
+  }
 }

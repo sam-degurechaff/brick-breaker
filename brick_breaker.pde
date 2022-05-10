@@ -15,6 +15,8 @@ boolean akey, dkey, upkey, downkey;
 float r, R;
 int score, timer;
 int tempx, tempy;
+boolean[] alive;
+float lives;
 
 int[] bx; 
 int[] by; 
@@ -28,7 +30,7 @@ void setup() {
   vy=random(-S2, S2);
 
   ballx=width/2;
-  bally=height/2;
+  bally=height/2+100;
   balld=8;
 
   x=width/2;
@@ -41,15 +43,24 @@ void setup() {
   akey=dkey=upkey=downkey=false;
 
   brickd=50;
-  n=40;
+  n=42;
   bx=new int[n];
   by=new int[n];
-  tempx=10;
-  tempy=10;
+  tempx=100;
+  tempy=100;
+  alive=new boolean[n];
+  
   int i=0;
   while (i<n) {
     bx[i]=tempx;
     by[i]=tempy;
+    alive[i]=true;
+
+    tempx = tempx + 100;
+    if (tempx==width) {
+      tempx=100;
+      tempy=tempy+80;
+    }
     i=i+1;
   }
 }
