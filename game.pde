@@ -1,7 +1,12 @@
 void game() {
+  background(80);
+  fill(232);
   text(timer, 3*width/4, 550); 
   timer=timer-1;
   circle(100, 100, 50);
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  text("lives:"+lives, width/2, 40);
 
   println(ballx, bally);
   if (ballx<8/2||ballx>width-8/2) {
@@ -24,7 +29,7 @@ void game() {
     bally=bally+vy;
   }
 
-  if (bally<8/2||bally>height-8/2) {
+  if (bally<8/2) {
     vy=vy*-1;
   }
 
@@ -35,9 +40,7 @@ void game() {
     x=50;
   }
 
-  circle(bx[0], by[0], brickd);
-  circle(bx[1], by[1], brickd);
-  circle(bx[2], by[2], brickd);
+ 
 
   int i=0;
   while (i<n) {
@@ -45,6 +48,19 @@ void game() {
 
       manageBrick( i );
     i++;
+  }
+  if (bally>1000) 
+    //playSound();
+  {
+    lives=lives-1;
+    ballx=width/2;
+    bally=height/2+100;
+    timer=0;
+    // bump.rewind();
+    // bump.play();
+    if (lives==0) {
+      mode=GAMEOVER;
+    }
   }
 }
 
@@ -55,18 +71,24 @@ void gameClicks() {
     mode=PAUSE;
   } else {
     lives=lives-1;
+    ballx=width/2;
+    bally=height/2+100;
+    timer=0;
     // bump.rewind();
     // bump.play();
     if (lives==0) {
       mode=GAMEOVER;
     }
+    if (score==3) {
+      mode=WIN;
   }
-}
+}}
 void manageBrick(int i ) {
   circle(bx[i], by[i], brickd);
   if (dist(ballx, bally, bx[i], by[i])<balld/2+brickd/2) {
     vx=(ballx-bx[i])/10;
     vy=(bally-by[i])/10;
     alive[i]=false;
+    score=score+1;
   }
 }

@@ -6,14 +6,14 @@ final int GAME=1;
 final int PAUSE=2;
 final int GAMEOVER=3;
 final int OPTIONS=4;
-final int GAMEOVER02=5;
+final int WIN=5;
 float ballx, bally, balld;
 float x, y, d, rightx, righty, rightd;
 float vx, vy;
 float S2, dist;
 boolean akey, dkey, upkey, downkey;
 float r, R;
-int score, timer;
+int score, timer, highscore;
 int tempx, tempy;
 boolean[] alive;
 float lives;
@@ -24,10 +24,11 @@ int brickd;
 
 void setup() {
   size(800, 1000);
-  mode=GAME;
+  mode=INTRO;
   S2=8;
   vx=random(-S2, S2);
   vy=random(-S2, S2);
+  lives=3;
 
   ballx=width/2;
   bally=height/2+100;
@@ -39,6 +40,7 @@ void setup() {
   r=d/2;
   R=balld/2;
 
+  score=0;
   timer=100;
   akey=dkey=upkey=downkey=false;
 
@@ -49,7 +51,7 @@ void setup() {
   tempx=100;
   tempy=100;
   alive=new boolean[n];
-  
+
   int i=0;
   while (i<n) {
     bx[i]=tempx;
@@ -73,9 +75,26 @@ void draw() {
     pause();
   } else if (mode==GAMEOVER) {
     gameover();
-  } else if (mode==GAMEOVER02) {
-    utilities();
+  } else if (mode==WIN) {
+    win();
   } else {
     println("Mode error:"+mode);
+  }
+}
+void mouseReleased() {
+  if (mode==INTRO) {
+    introClicks();
+  } else if (mode==GAME) {
+    gameClicks();
+  } else if (mode==PAUSE) {
+    pauseClicks();
+  } else if (mode==GAMEOVER) {
+    gameoverClicks();
+  } else if (mode==OPTIONS) {
+    pauseClicks();
+  } else if (mode==WIN) {
+    winClicks();
+  } else {
+    println("error: mode="+mode);
   }
 }
