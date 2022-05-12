@@ -1,3 +1,16 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+Minim minim;
+AudioPlayer theme, gametheme, gametheme02, coin, bump, gameover, coin02;
+
+theme=minim.loadFile("Y2Mate.is - War Thunder Soundtrack Legacy Main Theme-elU1vJzhFX8-128k-1649107117443.mp3");
+gametheme=minim.loadFile("game theme.mp3");
+
 int i=0;
 int mode;
 int n;
