@@ -3,6 +3,7 @@ void game() {
     mode=WIN;
   }
   theme.pause();
+  gameover.pause();
   gametheme.play();
   background(80);
   fill(232);
@@ -73,6 +74,8 @@ void game() {
   }
 }
 
+void playSound() {
+}
 void gameClicks() {  
   if (bally>1000) {
     //playSound();
@@ -102,6 +105,15 @@ void manageBrick(int i ) {
     vy=(bally-by[i])/10;
     alive[i]=false;
     score=score+1;
-    println(score);
+
+    r2=random(-50, 50);
+    score=score+1;
+    if (r<0) {
+      coin.rewind();
+      coin.play();
+    } else {
+      coin02.rewind();
+      coin02.play();
+    }
   }
 }

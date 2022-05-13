@@ -1,5 +1,7 @@
 void gameover() {  
-
+  gametheme.pause();
+  //gameover.rewind();
+  gameover.play();
   background(225);
   textSize(50);
   fill(0);
@@ -14,4 +16,6 @@ void gameoverClicks() {
   i=0;
   alive[i]=true;
   setup();
-}
+  if (mode==INTRO) {
+    gameover.pause();
+  }}{}{}{}{}{}{}{}{}{}
