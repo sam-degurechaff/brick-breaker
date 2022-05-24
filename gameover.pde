@@ -15,7 +15,7 @@ void gameoverClicks() {
   timer=0;
   i=0;
   alive[i]=true;
+  gameover.pause();
   setup();
-  if (mode==INTRO) {
-    gameover.pause();
-  }}{}{}{}{}{}{}{}{}{}
+    
+  }{}{}{}{}{}{}{}{}{}
